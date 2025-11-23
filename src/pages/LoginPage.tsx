@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,13 +10,25 @@ import { Separator } from "@/components/ui/separator";
 import Navbar from "@/components/Navbar";
 
 const LoginPage = () => {
+  const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement login logic
-    console.log("Login:", { email, password });
+    
+    setLoading(true);
+    
+    const { error } = await signIn(email, password);
+    
+    if (error) {
+      toast.error(error.message || "Login mislukt");
+    } else {
+      toast.success("Welkom terug!");
+    }
+    
+    setLoading(false);
   };
 
   return (
@@ -66,8 +80,8 @@ const LoginPage = () => {
                 />
               </div>
 
-              <Button type="submit" className="w-full gradient-primary" size="lg">
-                Inloggen
+              <Button type="submit" className="w-full gradient-primary" size="lg" disabled={loading}>
+                {loading ? "Bezig..." : "Inloggen"}
               </Button>
             </form>
 
