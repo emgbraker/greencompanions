@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Navbar from "@/components/Navbar";
 
 const RegisterPage = () => {
+  const { signUp } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -17,11 +20,37 @@ const RegisterPage = () => {
     confirmPassword: "",
     agreeTerms: false,
   });
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement registration logic
-    console.log("Register:", formData);
+    
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Wachtwoorden komen niet overeen");
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      toast.error("Wachtwoord moet minimaal 8 tekens zijn");
+      return;
+    }
+
+    setLoading(true);
+    
+    const { error } = await signUp(
+      formData.email,
+      formData.password,
+      formData.firstName,
+      formData.lastName
+    );
+    
+    if (error) {
+      toast.error(error.message || "Registratie mislukt");
+    } else {
+      toast.success("Account aangemaakt! Je bent nu ingelogd.");
+    }
+    
+    setLoading(false);
   };
 
   return (
@@ -124,9 +153,9 @@ const RegisterPage = () => {
                 type="submit"
                 className="w-full gradient-primary"
                 size="lg"
-                disabled={!formData.agreeTerms}
+                disabled={!formData.agreeTerms || loading}
               >
-                Maak Account
+                {loading ? "Bezig..." : "Maak Account"}
               </Button>
             </form>
 
