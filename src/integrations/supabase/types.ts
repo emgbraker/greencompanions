@@ -85,7 +85,7 @@ export type Database = {
           first_name: string
           gender: string | null
           golf_club: string | null
-          handicap: number | null
+          handicap: string | null
           id: string
           last_name: string
           preferences: Json | null
@@ -101,7 +101,7 @@ export type Database = {
           first_name: string
           gender?: string | null
           golf_club?: string | null
-          handicap?: number | null
+          handicap?: string | null
           id: string
           last_name: string
           preferences?: Json | null
@@ -117,7 +117,7 @@ export type Database = {
           first_name?: string
           gender?: string | null
           golf_club?: string | null
-          handicap?: number | null
+          handicap?: string | null
           id?: string
           last_name?: string
           preferences?: Json | null
