@@ -64,6 +64,9 @@ const Navbar = () => {
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>Mijn Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate("/profile")}>
+                    Mijn Profiel
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => navigate("/admin")}>
                     Dashboard
                   </DropdownMenuItem>
@@ -112,6 +115,16 @@ const Navbar = () => {
             <div className="pt-4 space-y-2">
               {user ? (
                 <>
+                  <Button 
+                    variant="outline" 
+                    className="w-full"
+                    onClick={() => {
+                      setIsOpen(false);
+                      navigate("/profile");
+                    }}
+                  >
+                    Mijn Profiel
+                  </Button>
                   <Button 
                     variant="outline" 
                     className="w-full"
