@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Navbar from "@/components/Navbar";
 
 const RegisterPage = () => {
@@ -18,6 +19,9 @@ const RegisterPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    gender: "",
+    province: "",
+    handicap: "",
     agreeTerms: false,
   });
   const [loading, setLoading] = useState(false);
@@ -35,13 +39,21 @@ const RegisterPage = () => {
       return;
     }
 
+    if (!formData.gender || !formData.province || !formData.handicap) {
+      toast.error("Vul alle verplichte velden in");
+      return;
+    }
+
     setLoading(true);
     
     const { error } = await signUp(
       formData.email,
       formData.password,
       formData.firstName,
-      formData.lastName
+      formData.lastName,
+      formData.gender,
+      formData.province,
+      formData.handicap
     );
     
     if (error) {
@@ -91,6 +103,66 @@ const RegisterPage = () => {
                     required
                   />
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="gender">Geslacht *</Label>
+                <Select 
+                  value={formData.gender} 
+                  onValueChange={(value) => setFormData({ ...formData, gender: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecteer geslacht" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="man">Man</SelectItem>
+                    <SelectItem value="vrouw">Vrouw</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="province">Provincie *</Label>
+                <Select 
+                  value={formData.province} 
+                  onValueChange={(value) => setFormData({ ...formData, province: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecteer provincie" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Drenthe">Drenthe</SelectItem>
+                    <SelectItem value="Flevoland">Flevoland</SelectItem>
+                    <SelectItem value="Friesland">Friesland</SelectItem>
+                    <SelectItem value="Gelderland">Gelderland</SelectItem>
+                    <SelectItem value="Groningen">Groningen</SelectItem>
+                    <SelectItem value="Limburg">Limburg</SelectItem>
+                    <SelectItem value="Noord-Brabant">Noord-Brabant</SelectItem>
+                    <SelectItem value="Noord-Holland">Noord-Holland</SelectItem>
+                    <SelectItem value="Overijssel">Overijssel</SelectItem>
+                    <SelectItem value="Utrecht">Utrecht</SelectItem>
+                    <SelectItem value="Zeeland">Zeeland</SelectItem>
+                    <SelectItem value="Zuid-Holland">Zuid-Holland</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="handicap">Golf Handicap *</Label>
+                <Select 
+                  value={formData.handicap} 
+                  onValueChange={(value) => setFormData({ ...formData, handicap: value })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Selecteer handicap niveau" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="0-10">0-10 (Zeer ervaren)</SelectItem>
+                    <SelectItem value="11-20">11-20 (Ervaren)</SelectItem>
+                    <SelectItem value="20-30">20-30 (Gemiddeld)</SelectItem>
+                    <SelectItem value="30+">30+ (Beginner)</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
 
               <div className="space-y-2">
