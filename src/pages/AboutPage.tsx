@@ -2,10 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Target, Heart, Users, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 const AboutPage = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
 
       <main className="flex-1">
@@ -47,7 +45,7 @@ const AboutPage = () => {
                     <div className="w-16 h-16 mx-auto rounded-full gradient-primary flex items-center justify-center mb-4">
                       <Users className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="font-heading font-bold text-3xl text-foreground mb-2">5000+</div>
+                    <div className="font-heading font-bold text-3xl text-foreground mb-2">100+</div>
                     <p className="text-sm text-muted-foreground">Actieve Leden</p>
                   </CardContent>
                 </Card>
@@ -56,7 +54,7 @@ const AboutPage = () => {
                     <div className="w-16 h-16 mx-auto rounded-full gradient-primary flex items-center justify-center mb-4">
                       <Heart className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="font-heading font-bold text-3xl text-foreground mb-2">850+</div>
+                    <div className="font-heading font-bold text-3xl text-foreground mb-2">100+</div>
                     <p className="text-sm text-muted-foreground">Succesvolle Matches</p>
                   </CardContent>
                 </Card>
@@ -65,7 +63,7 @@ const AboutPage = () => {
                     <div className="w-16 h-16 mx-auto rounded-full gradient-primary flex items-center justify-center mb-4">
                       <Target className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="font-heading font-bold text-3xl text-foreground mb-2">120+</div>
+                    <div className="font-heading font-bold text-3xl text-foreground mb-2">20+</div>
                     <p className="text-sm text-muted-foreground">Partner Clubs</p>
                   </CardContent>
                 </Card>
@@ -96,21 +94,16 @@ const AboutPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Authenticiteit",
-                  description: "Wij waarderen echte profielen en oprechte connecties. Elk lid wordt geverifieerd om een veilige en betrouwbare community te garanderen.",
-                },
-                {
-                  title: "Inclusiviteit",
-                  description: "GreenConnect verwelkomt golfers van alle niveaus – van beginners tot professionals. Iedereen verdient de kans om betekenisvolle connecties te maken.",
-                },
-                {
-                  title: "Excellentie",
-                  description: "Net als in golf streven we naar continue verbetering. We investeren in onze platform en community om de beste ervaring te bieden.",
-                },
-              ].map((value, index) => (
-                <Card key={index} className="shadow-soft border-border">
+              {[{
+              title: "Authenticiteit",
+              description: "Wij waarderen echte profielen en oprechte connecties. Elk lid wordt geverifieerd om een veilige en betrouwbare community te garanderen."
+            }, {
+              title: "Inclusiviteit",
+              description: "GreenConnect verwelkomt golfers van alle niveaus – van beginners tot professionals. Iedereen verdient de kans om betekenisvolle connecties te maken."
+            }, {
+              title: "Excellentie",
+              description: "Net als in golf streven we naar continue verbetering. We investeren in onze platform en community om de beste ervaring te bieden."
+            }].map((value, index) => <Card key={index} className="shadow-soft border-border">
                   <CardContent className="pt-6">
                     <h3 className="font-heading font-bold text-xl text-foreground mb-3">
                       {value.title}
@@ -119,8 +112,7 @@ const AboutPage = () => {
                       {value.description}
                     </p>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
@@ -159,8 +151,6 @@ const AboutPage = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default AboutPage;
