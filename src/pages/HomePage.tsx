@@ -7,18 +7,15 @@ import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-golf.jpg";
 import golfersImage from "@/assets/golfers-meeting.jpg";
 import clubhouseImage from "@/assets/clubhouse.jpg";
-
 const HomePage = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
 
       {/* Hero Section */}
       <section className="relative h-[600px] md:h-[700px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
+        <div className="absolute inset-0 bg-cover bg-center" style={{
+        backgroundImage: `url(${heroImage})`
+      }}>
           <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 to-foreground/40" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
@@ -60,43 +57,33 @@ const HomePage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Heart,
-                title: "Romantische Matches",
-                description: "Vind liefde met iemand die jouw passie voor golf begrijpt en deelt.",
-              },
-              {
-                icon: Users,
-                title: "Golf Vrienden",
-                description: "Bouw vriendschappen op met gelijkgestemde golfenthousiastelingen.",
-              },
-              {
-                icon: Calendar,
-                title: "Plan Rondes",
-                description: "Organiseer golf sessies met je matches en speel samen op de mooiste banen.",
-              },
-              {
-                icon: MapPin,
-                title: "Vind Clubs",
-                description: "Ontdek nieuwe golfclubs en ontmoet leden in jouw regio.",
-              },
-              {
-                icon: Trophy,
-                title: "Toernooien",
-                description: "Doe mee aan exclusieve GreenConnect toernooien en events.",
-              },
-              {
-                icon: Award,
-                title: "Premium Community",
-                description: "Word deel van een exclusieve community van serieuze golfers.",
-              },
-            ].map((feature, index) => (
-              <Card
-                key={index}
-                className="shadow-soft hover:shadow-medium transition-all duration-300 border-border hover:border-primary/50 animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
+            {[{
+            icon: Heart,
+            title: "Romantische Matches",
+            description: "Vind liefde met iemand die jouw passie voor golf begrijpt en deelt."
+          }, {
+            icon: Users,
+            title: "Golf Vrienden",
+            description: "Bouw vriendschappen op met gelijkgestemde golfenthousiastelingen."
+          }, {
+            icon: Calendar,
+            title: "Plan Rondes",
+            description: "Organiseer golf sessies met je matches en speel samen op de mooiste banen."
+          }, {
+            icon: MapPin,
+            title: "Vind Clubs",
+            description: "Ontdek nieuwe golfclubs en ontmoet leden in jouw regio."
+          }, {
+            icon: Trophy,
+            title: "Toernooien",
+            description: "Doe mee aan exclusieve GreenConnect toernooien en events."
+          }, {
+            icon: Award,
+            title: "Premium Community",
+            description: "Word deel van een exclusieve community van serieuze golfers."
+          }].map((feature, index) => <Card key={index} className="shadow-soft hover:shadow-medium transition-all duration-300 border-border hover:border-primary/50 animate-scale-in" style={{
+            animationDelay: `${index * 100}ms`
+          }}>
                 <CardHeader>
                   <div className="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center mb-4">
                     <feature.icon className="w-6 h-6 text-primary-foreground" />
@@ -106,8 +93,7 @@ const HomePage = () => {
                 <CardContent>
                   <CardDescription className="text-base">{feature.description}</CardDescription>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -161,11 +147,7 @@ const HomePage = () => {
               </Link>
             </div>
             <div className="relative animate-scale-in">
-              <img
-                src={golfersImage}
-                alt="Golfers ontmoeten elkaar"
-                className="rounded-2xl shadow-strong w-full"
-              />
+              <img src={golfersImage} alt="Golfers ontmoeten elkaar" className="rounded-2xl shadow-strong w-full" />
               <div className="absolute -bottom-6 -left-6 bg-card p-6 rounded-xl shadow-medium border border-border max-w-xs">
                 <p className="text-sm text-muted-foreground mb-2">Nieuwste Match</p>
                 <p className="font-heading font-semibold text-foreground">
@@ -181,10 +163,9 @@ const HomePage = () => {
       <section className="py-20 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-3xl">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${clubhouseImage})` }}
-            >
+            <div className="absolute inset-0 bg-cover bg-center" style={{
+            backgroundImage: `url(${clubhouseImage})`
+          }}>
               <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/70" />
             </div>
             <div className="relative px-8 py-16 md:py-24 text-center">
@@ -201,7 +182,7 @@ const HomePage = () => {
                   </Button>
                 </Link>
                 <Link to="/lidmaatschappen">
-                  <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6">
+                  <Button size="lg" variant="outline" className="border-2 border-white hover:bg-white/10 text-lg px-8 py-6 text-green-700">
                     Bekijk Lidmaatschappen
                   </Button>
                 </Link>
@@ -212,8 +193,6 @@ const HomePage = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default HomePage;
