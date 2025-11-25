@@ -23,6 +23,7 @@ const ProfilePage = () => {
     last_name: "",
     gender: "",
     city: "",
+    province: "",
     handicap: "",
     bio: "",
     avatar_url: "",
@@ -56,6 +57,7 @@ const ProfilePage = () => {
         last_name: data.last_name || "",
         gender: data.gender || "",
         city: data.city || "",
+        province: data.province || "",
         handicap: data.handicap || "",
         bio: data.bio || "",
         avatar_url: data.avatar_url || "",
@@ -107,6 +109,7 @@ const ProfilePage = () => {
         last_name: profile.last_name,
         gender: profile.gender,
         city: profile.city,
+        province: profile.province,
         handicap: profile.handicap,
         bio: profile.bio,
         avatar_url: profile.avatar_url,
@@ -212,7 +215,7 @@ const ProfilePage = () => {
                 {/* Province */}
                 <div className="space-y-2">
                   <Label htmlFor="province">Provincie</Label>
-                  <Select value={profile.city} onValueChange={(value) => setProfile({ ...profile, city: value })}>
+                  <Select value={profile.province} onValueChange={(value) => setProfile({ ...profile, province: value })}>
                     <SelectTrigger>
                       <SelectValue placeholder="Selecteer provincie" />
                     </SelectTrigger>
@@ -231,6 +234,17 @@ const ProfilePage = () => {
                       <SelectItem value="Zuid-Holland">Zuid-Holland</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+
+                {/* City */}
+                <div className="space-y-2">
+                  <Label htmlFor="city">Stad</Label>
+                  <Input
+                    id="city"
+                    placeholder="bijv. Amsterdam"
+                    value={profile.city}
+                    onChange={(e) => setProfile({ ...profile, city: e.target.value })}
+                  />
                 </div>
 
                 {/* Handicap */}

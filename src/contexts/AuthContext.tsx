@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           first_name: firstName,
           last_name: lastName,
           gender: gender,
-          city: province,
+          province: province,
           handicap: handicap,
         },
       },
