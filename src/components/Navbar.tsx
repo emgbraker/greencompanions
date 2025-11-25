@@ -25,6 +25,10 @@ const Navbar = () => {
     { name: "Contact", path: "/contact" },
   ];
 
+  const memberNavLinks = [
+    { name: "Ontdek Leden", path: "/leden" },
+  ];
+
   return (
     <nav className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border shadow-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,6 +50,15 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className="px-4 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              >
+                {link.name}
+              </Link>
+            ))}
+            {user && memberNavLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="px-4 py-2 rounded-md text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors"
               >
                 {link.name}
               </Link>
@@ -108,6 +121,16 @@ const Navbar = () => {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className="block px-3 py-2 rounded-md text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted"
+              >
+                {link.name}
+              </Link>
+            ))}
+            {user && memberNavLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-primary/80 hover:bg-primary/10"
               >
                 {link.name}
               </Link>
