@@ -135,11 +135,7 @@ const AboutPage = () => {
                 In 2024 lanceerden we GreenConnect als het eerste Nederlandse platform speciaal voor de golf community. Sindsdien hebben honderden leden elkaar gevonden, van casual speelmaatjes tot levenslange vriendschappen en romantische relaties. Onze leden delen niet alleen een passie voor golf, maar ook waarden als respect, sportiviteit en het nastreven van persoonlijke groei.
               </p>
               <p className="leading-relaxed">
-                Vandaag de dag groeit GreenConnect nog steeds. We werken samen met meer dan 120 
-                golfclubs in Nederland, organiseren exclusieve events, en blijven investeren in 
-                functies die het matchen nog persoonlijker en effectiever maken. Onze community 
-                is ons grootste kapitaal, en we zijn er trots op dat we een platform hebben 
-                gecreëerd waar iedereen zich welkom voelt.
+                Vandaag de dag groeit GreenConnect nog steeds. We werken samen met golfclubs in Nederland, organiseren exclusieve events, en blijven investeren in functies die het matchen nog persoonlijker en effectiever maken. Onze community is ons grootste kapitaal, en we zijn er trots op dat we een platform hebben gecreëerd waar iedereen zich welkom voelt.
               </p>
             </div>
           </div>
