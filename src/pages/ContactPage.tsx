@@ -3,13 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
 const ContactPage = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
 
       <main className="flex-1">
@@ -50,45 +48,25 @@ const ContactPage = () => {
                         </div>
                         <div>
                           <h3 className="font-heading font-semibold text-foreground mb-1">Email</h3>
-                          <a
-                            href="mailto:info@greenconnect.nl"
-                            className="text-sm text-muted-foreground hover:text-primary"
-                          >
+                          <a href="mailto:info@greenconnect.nl" className="text-sm text-muted-foreground hover:text-primary">
                             info@greenconnect.nl
                           </a>
                         </div>
                       </div>
 
                       <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
-                          <Phone className="w-5 h-5 text-primary-foreground" />
-                        </div>
+                        
                         <div>
-                          <h3 className="font-heading font-semibold text-foreground mb-1">
-                            Telefoon
-                          </h3>
-                          <a
-                            href="tel:+31208001234"
-                            className="text-sm text-muted-foreground hover:text-primary"
-                          >
-                            +31 (0)20 800 1234
-                          </a>
+                          
+                          
                         </div>
                       </div>
 
                       <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
-                          <MapPin className="w-5 h-5 text-primary-foreground" />
-                        </div>
+                        
                         <div>
-                          <h3 className="font-heading font-semibold text-foreground mb-1">Adres</h3>
-                          <p className="text-sm text-muted-foreground">
-                            Golfbaan 123
-                            <br />
-                            1234 AB Amsterdam
-                            <br />
-                            Nederland
-                          </p>
+                          
+                          
                         </div>
                       </div>
 
@@ -146,11 +124,7 @@ const ContactPage = () => {
 
                       <div className="space-y-2">
                         <Label htmlFor="message">Bericht *</Label>
-                        <Textarea
-                          id="message"
-                          placeholder="Vertel ons waar we je mee kunnen helpen..."
-                          rows={6}
-                        />
+                        <Textarea id="message" placeholder="Vertel ons waar we je mee kunnen helpen..." rows={6} />
                       </div>
 
                       <Button type="submit" size="lg" className="gradient-primary w-full md:w-auto">
@@ -181,8 +155,6 @@ const ContactPage = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default ContactPage;
