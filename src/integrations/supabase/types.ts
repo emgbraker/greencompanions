@@ -79,6 +79,9 @@ export type Database = {
           avatar_url: string | null
           bio: string | null
           birth_date: string | null
+          blocked: boolean | null
+          blocked_at: string | null
+          blocked_reason: string | null
           city: string | null
           created_at: string | null
           email: string
@@ -96,6 +99,9 @@ export type Database = {
           avatar_url?: string | null
           bio?: string | null
           birth_date?: string | null
+          blocked?: boolean | null
+          blocked_at?: string | null
+          blocked_reason?: string | null
           city?: string | null
           created_at?: string | null
           email: string
@@ -113,6 +119,9 @@ export type Database = {
           avatar_url?: string | null
           bio?: string | null
           birth_date?: string | null
+          blocked?: boolean | null
+          blocked_at?: string | null
+          blocked_reason?: string | null
           city?: string | null
           created_at?: string | null
           email?: string
@@ -125,6 +134,51 @@ export type Database = {
           preferences?: Json | null
           province?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      sponsors: {
+        Row: {
+          active: boolean | null
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          expires_at: string | null
+          id: string
+          logo_url: string | null
+          name: string
+          package_type: string
+          website_url: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          expires_at?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          package_type: string
+          website_url?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          expires_at?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          package_type?: string
+          website_url?: string | null
         }
         Relationships: []
       }
@@ -148,6 +202,101 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      user_warnings: {
+        Row: {
+          created_at: string | null
+          id: string
+          notes: string | null
+          reason: string
+          resolved: boolean | null
+          resolved_at: string | null
+          severity: string
+          user_id: string
+          warned_by: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          reason: string
+          resolved?: boolean | null
+          resolved_at?: string | null
+          severity: string
+          user_id: string
+          warned_by: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          reason?: string
+          resolved?: boolean | null
+          resolved_at?: string | null
+          severity?: string
+          user_id?: string
+          warned_by?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_warnings_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_warnings_warned_by_fkey"
+            columns: ["warned_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      website_content: {
+        Row: {
+          content_nl: string
+          content_type: string
+          display_order: number | null
+          editable: boolean | null
+          id: string
+          page_key: string
+          section_key: string
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          content_nl: string
+          content_type: string
+          display_order?: number | null
+          editable?: boolean | null
+          id?: string
+          page_key: string
+          section_key: string
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          content_nl?: string
+          content_type?: string
+          display_order?: number | null
+          editable?: boolean | null
+          id?: string
+          page_key?: string
+          section_key?: string
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "website_content_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

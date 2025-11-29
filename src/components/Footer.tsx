@@ -67,6 +67,16 @@ const Footer = () => {
                   Privacy
                 </Link>
               </li>
+              <li>
+                <Link to="/sponsoren" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Sponsoren
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Admin
+                </Link>
+              </li>
             </ul>
           </div>
 
