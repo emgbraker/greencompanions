@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { MemberCard, calculateAge } from "@/components/MemberCard";
+import { MemberCard } from "@/components/MemberCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -25,11 +25,12 @@ interface Profile {
   first_name: string;
   last_name: string;
   avatar_url: string | null;
-  birth_date: string | null;
+  age: number | null;
   city: string | null;
   province: string | null;
   handicap: string | null;
   gender: string | null;
+  bio: string | null;
 }
 
 const PROVINCES = [
@@ -85,10 +86,8 @@ const MembersPage = () => {
   const fetchMembers = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("*")
-        .neq("id", user?.id); // Exclude current user
+      // Use the secure search_members function which returns only non-sensitive data
+      const { data, error } = await supabase.rpc('search_members');
 
       if (error) throw error;
 
@@ -133,13 +132,12 @@ const MembersPage = () => {
     // Filter by age
     if (ageMin || ageMax) {
       filtered = filtered.filter((member) => {
-        const age = calculateAge(member.birth_date);
-        if (!age) return false;
+        if (!member.age) return false;
 
         const min = ageMin ? parseInt(ageMin) : 0;
         const max = ageMax ? parseInt(ageMax) : 120;
 
-        return age >= min && age <= max;
+        return member.age >= min && member.age <= max;
       });
     }
 
@@ -358,7 +356,7 @@ const MembersPage = () => {
                   firstName={member.first_name}
                   lastName={member.last_name}
                   avatarUrl={member.avatar_url}
-                  age={calculateAge(member.birth_date)}
+                  age={member.age || undefined}
                   city={member.city}
                   province={member.province}
                   handicap={member.handicap}
