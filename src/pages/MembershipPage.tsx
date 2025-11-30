@@ -18,7 +18,7 @@ const MembershipPage = () => {
         "5 likes per dag",
         "Basis zoekfilters",
         "Chatten met matches",
-        "Toegang tot community forum",
+        "Proeflidmaatschap voor 3 maanden",
       ],
       cta: "Start Gratis",
       popular: false,
@@ -26,7 +26,7 @@ const MembershipPage = () => {
     {
       name: "Premium",
       icon: Star,
-      price: "€19,99",
+      price: "€6,99",
       period: "/maand",
       description: "Voor serieuze golfers die meer willen ontdekken",
       features: [
@@ -36,7 +36,6 @@ const MembershipPage = () => {
         "Zie wie je profiel heeft geliked",
         "Prioriteit in matching algoritme",
         "Geen advertenties",
-        "10% korting bij partner clubs",
         "Toegang tot Premium events",
       ],
       cta: "Word Premium",
@@ -45,7 +44,7 @@ const MembershipPage = () => {
     {
       name: "Elite",
       icon: Crown,
-      price: "€39,99",
+      price: "€9,99",
       period: "/maand",
       description: "De ultieme GreenConnect ervaring voor exclusiviteit",
       features: [
@@ -53,11 +52,9 @@ const MembershipPage = () => {
         "Profiel badge 'Elite Member'",
         "Persoonlijke matchmaker service",
         "VIP toegang tot exclusieve events",
-        "Gratis greenfee deals",
-        "20% korting bij partner clubs",
+        "Exclusief voor mensen die ook een relatie zoeken",
+        "korting bij partner clubs",
         "Voorrang bij toernooien",
-        "Concierge service voor reserveringen",
-        "Jaarlijkse Elite golfweekend",
       ],
       cta: "Word Elite",
       popular: false,
