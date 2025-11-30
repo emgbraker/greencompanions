@@ -310,6 +310,21 @@ export type Database = {
         }
         Returns: boolean
       }
+      search_members: {
+        Args: never
+        Returns: {
+          age: number
+          avatar_url: string
+          bio: string
+          city: string
+          first_name: string
+          gender: string
+          handicap: string
+          id: string
+          last_name: string
+          province: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
