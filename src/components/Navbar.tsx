@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, LogOut } from "lucide-react";
+import { Menu, X, User, LogOut, MessageSquare } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   DropdownMenu,
@@ -27,6 +27,7 @@ const Navbar = () => {
 
   const memberNavLinks = [
     { name: "Ontdek Leden", path: "/leden" },
+    { name: "Berichten", path: "/berichten", icon: MessageSquare },
   ];
 
   return (
@@ -58,8 +59,9 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="px-4 py-2 rounded-md text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors"
+                className="px-4 py-2 rounded-md text-sm font-medium text-primary hover:text-primary/80 hover:bg-primary/10 transition-colors flex items-center gap-2"
               >
+                {link.icon && <link.icon className="w-4 h-4" />}
                 {link.name}
               </Link>
             ))}
@@ -130,8 +132,9 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className="block px-3 py-2 rounded-md text-base font-medium text-primary hover:text-primary/80 hover:bg-primary/10"
+                className="flex items-center gap-2 px-3 py-2 rounded-md text-base font-medium text-primary hover:text-primary/80 hover:bg-primary/10"
               >
+                {link.icon && <link.icon className="w-4 h-4" />}
                 {link.name}
               </Link>
             ))}
