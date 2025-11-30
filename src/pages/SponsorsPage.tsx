@@ -146,7 +146,7 @@ const SponsorsPage = () => {
               Word Partner van GreenConnect
             </h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Bent u eigenaar van een golfclub, golfwinkel of golfgerelateerd bedrijf? 
+              Bent u eigenaar van een golfclub, golfwinkel, golfschool of golfgerelateerd bedrijf? 
               Neem contact op om meer te weten te komen over onze partnership mogelijkheden.
             </p>
             <Button size="lg" asChild>
