@@ -74,6 +74,53 @@ export type Database = {
         }
         Relationships: []
       }
+      memberships: {
+        Row: {
+          auto_renew: boolean | null
+          created_at: string
+          end_date: string | null
+          id: string
+          notification_sent: boolean | null
+          start_date: string
+          status: Database["public"]["Enums"]["membership_status"]
+          type: Database["public"]["Enums"]["membership_type"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          auto_renew?: boolean | null
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          notification_sent?: boolean | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["membership_status"]
+          type?: Database["public"]["Enums"]["membership_type"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          auto_renew?: boolean | null
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          notification_sent?: boolean | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["membership_status"]
+          type?: Database["public"]["Enums"]["membership_type"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "memberships_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       messages: {
         Row: {
           content: string
@@ -110,6 +157,44 @@ export type Database = {
           {
             foreignKeyName: "messages_sender_id_fkey"
             columns: ["sender_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          read: boolean | null
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          read?: boolean | null
+          title: string
+          type?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          read?: boolean | null
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
@@ -374,6 +459,8 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      membership_status: "active" | "expired" | "cancelled" | "pending"
+      membership_type: "free" | "premium" | "elite"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -502,6 +589,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      membership_status: ["active", "expired", "cancelled", "pending"],
+      membership_type: ["free", "premium", "elite"],
     },
   },
 } as const
