@@ -220,6 +220,7 @@ export type Database = {
           last_name: string
           preferences: Json | null
           province: string | null
+          seeking_relationship: boolean | null
           updated_at: string | null
         }
         Insert: {
@@ -240,6 +241,7 @@ export type Database = {
           last_name: string
           preferences?: Json | null
           province?: string | null
+          seeking_relationship?: boolean | null
           updated_at?: string | null
         }
         Update: {
@@ -260,6 +262,7 @@ export type Database = {
           last_name?: string
           preferences?: Json | null
           province?: string | null
+          seeking_relationship?: boolean | null
           updated_at?: string | null
         }
         Relationships: []
@@ -454,6 +457,7 @@ export type Database = {
           id: string
           last_name: string
           province: string
+          seeking_relationship: boolean
         }[]
       }
     }

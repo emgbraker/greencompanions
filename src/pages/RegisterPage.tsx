@@ -22,6 +22,7 @@ const RegisterPage = () => {
     gender: "",
     province: "",
     handicap: "",
+    seekingRelationship: false,
     agreeTerms: false,
   });
   const [loading, setLoading] = useState(false);
@@ -53,7 +54,8 @@ const RegisterPage = () => {
       formData.lastName,
       formData.gender,
       formData.province,
-      formData.handicap
+      formData.handicap,
+      formData.seekingRelationship
     );
     
     if (error) {
@@ -163,6 +165,36 @@ const RegisterPage = () => {
                     <SelectItem value="30+">30+ (Beginner)</SelectItem>
                   </SelectContent>
                 </Select>
+              </div>
+
+              <div className="space-y-3 p-4 rounded-lg bg-primary/5 border border-primary/20">
+                <Label className="text-base font-medium">Zoek je ook een relatie? *</Label>
+                <p className="text-sm text-muted-foreground">
+                  Als Elite lid kun je andere golfers vinden die ook een relatie zoeken.
+                </p>
+                <div className="flex gap-4">
+                  <Button
+                    type="button"
+                    variant={formData.seekingRelationship ? "default" : "outline"}
+                    className={formData.seekingRelationship ? "gradient-primary" : ""}
+                    onClick={() => setFormData({ ...formData, seekingRelationship: true })}
+                  >
+                    Ja, ik word Elite lid
+                  </Button>
+                  <Button
+                    type="button"
+                    variant={!formData.seekingRelationship ? "default" : "outline"}
+                    className={!formData.seekingRelationship ? "" : ""}
+                    onClick={() => setFormData({ ...formData, seekingRelationship: false })}
+                  >
+                    Nee, alleen golf
+                  </Button>
+                </div>
+                {formData.seekingRelationship && (
+                  <p className="text-sm text-primary font-medium">
+                    ✓ Je wordt Elite lid en kunt relatie-zoekende leden vinden
+                  </p>
+                )}
               </div>
 
               <div className="space-y-2">
