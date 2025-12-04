@@ -31,6 +31,7 @@ interface Profile {
   handicap: string | null;
   gender: string | null;
   bio: string | null;
+  seeking_relationship: boolean | null;
 }
 
 const PROVINCES = [
@@ -62,6 +63,7 @@ const MembersPage = () => {
   const [filteredMembers, setFilteredMembers] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(true);
   const [showFilters, setShowFilters] = useState(true);
+  const [isEliteMember, setIsEliteMember] = useState(false);
 
   // Filter states
   const [searchQuery, setSearchQuery] = useState("");
@@ -70,6 +72,7 @@ const MembersPage = () => {
   const [selectedHandicap, setSelectedHandicap] = useState<string>("all");
   const [ageMin, setAgeMin] = useState<string>("");
   const [ageMax, setAgeMax] = useState<string>("");
+  const [seekingRelationshipFilter, setSeekingRelationshipFilter] = useState<string>("all");
 
   useEffect(() => {
     if (!user) {
@@ -77,11 +80,25 @@ const MembersPage = () => {
       return;
     }
     fetchMembers();
+    checkMembershipStatus();
   }, [user, navigate]);
+
+  const checkMembershipStatus = async () => {
+    if (!user) return;
+    
+    const { data } = await supabase
+      .from("memberships")
+      .select("type")
+      .eq("user_id", user.id)
+      .eq("status", "active")
+      .single();
+    
+    setIsEliteMember(data?.type === "elite");
+  };
 
   useEffect(() => {
     applyFilters();
-  }, [members, searchQuery, selectedProvince, selectedGender, selectedHandicap, ageMin, ageMax]);
+  }, [members, searchQuery, selectedProvince, selectedGender, selectedHandicap, ageMin, ageMax, seekingRelationshipFilter]);
 
   const fetchMembers = async () => {
     try {
@@ -141,6 +158,16 @@ const MembersPage = () => {
       });
     }
 
+    // Filter by seeking relationship (only for Elite members)
+    if (isEliteMember && seekingRelationshipFilter !== "all") {
+      filtered = filtered.filter((member) => {
+        if (seekingRelationshipFilter === "yes") {
+          return member.seeking_relationship === true;
+        }
+        return member.seeking_relationship !== true;
+      });
+    }
+
     setFilteredMembers(filtered);
   };
 
@@ -184,6 +211,7 @@ const MembersPage = () => {
     setSelectedHandicap("all");
     setAgeMin("");
     setAgeMax("");
+    setSeekingRelationshipFilter("all");
   };
 
   return (
@@ -316,6 +344,23 @@ const MembersPage = () => {
                       />
                     </div>
                   </div>
+
+                  {/* Seeking Relationship Filter - Only for Elite Members */}
+                  {isEliteMember && (
+                    <div>
+                      <Label>Zoekt relatie</Label>
+                      <Select value={seekingRelationshipFilter} onValueChange={setSeekingRelationshipFilter}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Alle" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">Alle leden</SelectItem>
+                          <SelectItem value="yes">Zoekt relatie</SelectItem>
+                          <SelectItem value="no">Alleen golf</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </div>
 
                 {/* Results Counter */}
@@ -361,6 +406,8 @@ const MembersPage = () => {
                   province={member.province}
                   handicap={member.handicap}
                   gender={member.gender}
+                  seekingRelationship={member.seeking_relationship || false}
+                  showRelationshipStatus={isEliteMember}
                   onLike={handleLike}
                 />
               ))}

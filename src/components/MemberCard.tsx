@@ -14,6 +14,8 @@ interface MemberCardProps {
   province?: string | null;
   handicap?: string | null;
   gender?: string | null;
+  seekingRelationship?: boolean;
+  showRelationshipStatus?: boolean;
   onLike?: (id: string) => void;
 }
 
@@ -27,6 +29,8 @@ export const MemberCard = ({
   province,
   handicap,
   gender,
+  seekingRelationship,
+  showRelationshipStatus,
   onLike,
 }: MemberCardProps) => {
   const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
@@ -93,11 +97,18 @@ export const MemberCard = ({
             </div>
           )}
 
-          {handicap && (
-            <Badge variant="outline" className="text-xs">
-              Handicap: {handicap}
-            </Badge>
-          )}
+          <div className="flex flex-wrap gap-1">
+            {handicap && (
+              <Badge variant="outline" className="text-xs">
+                Handicap: {handicap}
+              </Badge>
+            )}
+            {showRelationshipStatus && seekingRelationship && (
+              <Badge className="text-xs bg-pink-500/10 text-pink-600 border-pink-200">
+                💕 Zoekt relatie
+              </Badge>
+            )}
+          </div>
         </div>
       </CardContent>
     </Card>
