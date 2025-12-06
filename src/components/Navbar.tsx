@@ -23,6 +23,7 @@ const Navbar = () => {
     { name: "Over Ons", path: "/over-ons" },
     { name: "Hoe Het Werkt", path: "/hoe-het-werkt" },
     { name: "Lidmaatschappen", path: "/lidmaatschappen" },
+    { name: "Partners & Sponsoren", path: "/sponsoren" },
     { name: "Contact", path: "/contact" },
   ];
 
