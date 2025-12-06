@@ -52,6 +52,14 @@ const SponsorsPage = () => {
     );
   };
 
+  const formatUrl = (url: string | null): string => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    return `https://${url}`;
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -108,7 +116,7 @@ const SponsorsPage = () => {
                         asChild
                       >
                         <a
-                          href={sponsor.website_url}
+                          href={formatUrl(sponsor.website_url)}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
