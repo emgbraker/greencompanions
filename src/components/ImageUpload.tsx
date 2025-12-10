@@ -21,7 +21,7 @@ const ImageUpload = ({
   bucket,
   folder = "",
   label = "Afbeelding",
-  accept = "image/*",
+  accept = "image/*,.svg",
 }: ImageUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -117,7 +117,7 @@ const ImageUpload = ({
                 Klik om een afbeelding te uploaden
               </span>
               <span className="text-xs text-muted-foreground/70">
-                JPG, PNG, GIF (max 5MB)
+                JPG, PNG, GIF, SVG (max 5MB)
               </span>
             </div>
           )}
