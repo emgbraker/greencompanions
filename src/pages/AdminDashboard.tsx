@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { AlertTriangle, Eye, Plus, Pencil, Trash2, Save } from "lucide-react";
 import { toast } from "sonner";
+import ImageUpload from "@/components/ImageUpload";
 
 interface GolfClub {
   id: string;
@@ -849,15 +850,14 @@ const AdminDashboard = () => {
                         placeholder="+31..."
                       />
                     </div>
-                    <div>
-                      <Label>Afbeelding URL</Label>
-                      <Input
-                        value={clubForm.image_url}
-                        onChange={(e) => setClubForm({ ...clubForm, image_url: e.target.value })}
-                        placeholder="https://..."
-                      />
-                    </div>
                   </div>
+                  <ImageUpload
+                    value={clubForm.image_url}
+                    onChange={(url) => setClubForm({ ...clubForm, image_url: url })}
+                    bucket="logos"
+                    folder="clubs"
+                    label="Club Afbeelding"
+                  />
                 </div>
                 <DialogFooter>
                   <Button variant="outline" onClick={() => setClubDialogOpen(false)}>
@@ -990,15 +990,14 @@ const AdminDashboard = () => {
                         placeholder="https://..."
                       />
                     </div>
-                    <div>
-                      <Label>Logo URL</Label>
-                      <Input
-                        value={sponsorForm.logo_url}
-                        onChange={(e) => setSponsorForm({ ...sponsorForm, logo_url: e.target.value })}
-                        placeholder="https://..."
-                      />
-                    </div>
                   </div>
+                  <ImageUpload
+                    value={sponsorForm.logo_url}
+                    onChange={(url) => setSponsorForm({ ...sponsorForm, logo_url: url })}
+                    bucket="logos"
+                    folder="sponsors"
+                    label="Sponsor Logo"
+                  />
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label>Contact Email</Label>
