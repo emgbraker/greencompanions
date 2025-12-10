@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Mail, Phone, MapPin } from "lucide-react";
+import heroGolf from "@/assets/hero-golf.jpg";
+import clubhouse from "@/assets/clubhouse.jpg";
 
 interface Sponsor {
   id: string;
@@ -105,7 +107,18 @@ const SponsorsPage = () => {
               {/* Sponsors Section */}
               {sponsors.length > 0 && (
                 <section className="mb-16">
-                  <h2 className="font-heading text-2xl font-bold mb-6">Sponsoren</h2>
+                  <div className="relative h-48 md:h-64 rounded-xl overflow-hidden mb-8">
+                    <img 
+                      src={heroGolf} 
+                      alt="Sponsoren banner" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent flex items-center">
+                      <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground ml-8">
+                        Sponsoren
+                      </h2>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {sponsors.map((sponsor) => (
                       <Card key={sponsor.id} className="hover:shadow-lg transition-shadow">
@@ -175,7 +188,18 @@ const SponsorsPage = () => {
               {/* Golf Clubs Section */}
               {golfClubs.length > 0 && (
                 <section className="mb-16">
-                  <h2 className="font-heading text-2xl font-bold mb-6">Golfclubs</h2>
+                  <div className="relative h-48 md:h-64 rounded-xl overflow-hidden mb-8">
+                    <img 
+                      src={clubhouse} 
+                      alt="Golfclubs banner" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent flex items-center">
+                      <h2 className="font-heading text-3xl md:text-4xl font-bold text-primary-foreground ml-8">
+                        Golfclubs
+                      </h2>
+                    </div>
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {golfClubs.map((club) => (
                       <Card key={club.id} className="hover:shadow-lg transition-shadow">
