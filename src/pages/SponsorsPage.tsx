@@ -109,8 +109,8 @@ const SponsorsPage = () => {
                 <section className="mb-16">
                   <div className="relative h-48 md:h-64 rounded-xl overflow-hidden mb-8">
                     <img 
-                      src={heroGolf} 
-                      alt="Sponsoren banner" 
+                      src={clubhouse} 
+                      alt="Sponsoren banner"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent flex items-center">
@@ -190,8 +190,8 @@ const SponsorsPage = () => {
                 <section className="mb-16">
                   <div className="relative h-48 md:h-64 rounded-xl overflow-hidden mb-8">
                     <img 
-                      src={clubhouse} 
-                      alt="Golfclubs banner" 
+                      src={heroGolf} 
+                      alt="Golfclubs banner"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-transparent flex items-center">
