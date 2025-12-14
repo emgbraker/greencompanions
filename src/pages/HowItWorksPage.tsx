@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { UserPlus, Search, MessageCircle, Calendar, Heart, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import golfersYoung from "@/assets/golfers-young.jpg";
 
 const HowItWorksPage = () => {
   return (
@@ -118,6 +119,23 @@ const HowItWorksPage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Golfers Image */}
+        <section className="py-0">
+          <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+            <img 
+              src={golfersYoung} 
+              alt="Blije golfers op een zonnige golfbaan" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-0 right-0 text-center">
+              <p className="text-white text-lg md:text-xl font-medium drop-shadow-lg">
+                Ontmoet nieuwe golfvrienden
+              </p>
             </div>
           </div>
         </section>
