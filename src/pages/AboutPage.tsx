@@ -2,6 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Target, Heart, Users, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import happyGolfers from "@/assets/happy-golfers.jpg";
+
 const AboutPage = () => {
   return <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -113,6 +115,23 @@ const AboutPage = () => {
                     </p>
                   </CardContent>
                 </Card>)}
+            </div>
+          </div>
+        </section>
+
+        {/* Happy Golfers Image */}
+        <section className="py-0">
+          <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+            <img 
+              src={happyGolfers} 
+              alt="Blije golfers op een zonnige golfbaan" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+            <div className="absolute bottom-8 left-0 right-0 text-center">
+              <p className="text-white text-lg md:text-xl font-medium drop-shadow-lg">
+                Verbind met gelijkgestemde golfers
+              </p>
             </div>
           </div>
         </section>
