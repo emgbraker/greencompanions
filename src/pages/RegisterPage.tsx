@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -9,10 +9,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { CheckCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { supabase } from "@/integrations/supabase/client";
 
 const RegisterPage = () => {
   const { signUp } = useAuth();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -26,6 +36,23 @@ const RegisterPage = () => {
     agreeTerms: false,
   });
   const [loading, setLoading] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+
+  const sendWelcomeEmail = async (email: string, firstName: string, membershipType: string) => {
+    try {
+      const { error } = await supabase.functions.invoke("send-welcome-email", {
+        body: { email, firstName, membershipType },
+      });
+      
+      if (error) {
+        console.error("Error sending welcome email:", error);
+      } else {
+        console.log("Welcome email sent successfully");
+      }
+    } catch (error) {
+      console.error("Error invoking welcome email function:", error);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,16 +87,57 @@ const RegisterPage = () => {
     
     if (error) {
       toast.error(error.message || "Registratie mislukt");
+      setLoading(false);
     } else {
-      toast.success("Account aangemaakt! Je bent nu ingelogd.");
+      // Send welcome email
+      const membershipType = formData.seekingRelationship ? "elite" : "free";
+      await sendWelcomeEmail(formData.email, formData.firstName, membershipType);
+      
+      // Show success popup
+      setShowSuccessDialog(true);
+      setLoading(false);
     }
-    
-    setLoading(false);
+  };
+
+  const handleDialogClose = () => {
+    setShowSuccessDialog(false);
+    navigate("/");
   };
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
+
+      <Dialog open={showSuccessDialog} onOpenChange={handleDialogClose}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader className="text-center">
+            <div className="mx-auto w-16 h-16 rounded-full gradient-primary flex items-center justify-center mb-4">
+              <CheckCircle className="w-8 h-8 text-primary-foreground" />
+            </div>
+            <DialogTitle className="text-2xl font-heading">Welkom bij GreenConnect!</DialogTitle>
+            <DialogDescription className="text-base pt-2">
+              Je account is succesvol aangemaakt. We hebben een bevestigingsmail gestuurd naar <strong>{formData.email}</strong>.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="bg-primary/10 rounded-lg p-4">
+              <p className="text-sm text-center">
+                {formData.seekingRelationship 
+                  ? "Je bent nu een Elite lid en kunt andere golfers vinden die ook een relatie zoeken."
+                  : "Je bent nu een gratis lid en kunt golfpartners vinden in je regio."
+                }
+              </p>
+            </div>
+            <Button 
+              onClick={handleDialogClose} 
+              className="w-full gradient-primary"
+              size="lg"
+            >
+              Aan de slag!
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <main className="flex-1 flex items-center justify-center gradient-hero py-12 px-4">
         <Card className="w-full max-w-md shadow-strong border-border">
