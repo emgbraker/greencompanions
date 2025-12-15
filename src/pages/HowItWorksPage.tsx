@@ -5,6 +5,10 @@ import { UserPlus, Search, MessageCircle, Calendar, Heart, Shield } from "lucide
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import golfersYoung from "@/assets/golfers-young.jpg";
+import stepProfile from "@/assets/step-profile.jpg";
+import stepMatch from "@/assets/step-match.jpg";
+import stepChat from "@/assets/step-chat.jpg";
+import stepPlay from "@/assets/step-play.jpg";
 
 const HowItWorksPage = () => {
   return (
@@ -33,6 +37,7 @@ const HowItWorksPage = () => {
                   step: "01",
                   icon: UserPlus,
                   title: "Maak Je Profiel",
+                  image: stepProfile,
                   description: "Begin met het aanmaken van je persoonlijke GreenConnect profiel. Vertel over jezelf, je golf ervaring, handicap, favoriete clubs en wat je zoekt – vriendschap, speelmaatjes of romantiek.",
                   details: [
                     "Upload foto's en vertel je golf verhaal",
@@ -45,6 +50,7 @@ const HowItWorksPage = () => {
                   step: "02",
                   icon: Search,
                   title: "Ontdek Matches",
+                  image: stepMatch,
                   description: "Browse door profielen van golfers in jouw regio. Gebruik onze slimme filters om te zoeken op leeftijd, handicap, afstand, golf voorkeuren en wat je zoekt in een connectie.",
                   details: [
                     "Filter op locatie, leeftijd en golf niveau",
@@ -57,6 +63,7 @@ const HowItWorksPage = () => {
                   step: "03",
                   icon: MessageCircle,
                   title: "Start een Gesprek",
+                  image: stepChat,
                   description: "Wanneer jullie allebei interesse tonen, ontstaat er een match! Begin met chatten, leer elkaar beter kennen, en ontdek of er een klik is. Deel je favoriete golf momenten en praat over jullie volgende ronde.",
                   details: [
                     "Chat veilig binnen het platform",
@@ -69,6 +76,7 @@ const HowItWorksPage = () => {
                   step: "04",
                   icon: Calendar,
                   title: "Speel Samen",
+                  image: stepPlay,
                   description: "Plan je eerste ronde samen! Gebruik onze planning tool om een datum, tijd en golfclub af te spreken. Of doe mee aan een GreenConnect event om meerdere leden tegelijk te ontmoeten.",
                   details: [
                     "Plan rondes via de ingebouwde agenda",
@@ -109,11 +117,13 @@ const HowItWorksPage = () => {
                     </ul>
                   </div>
                   <div className="flex-1">
-                    <Card className="shadow-medium border-border">
-                      <CardContent className="p-8">
-                        <div className="aspect-square bg-muted rounded-xl flex items-center justify-center">
-                          <step.icon className="w-24 h-24 text-primary/40" />
-                        </div>
+                    <Card className="shadow-medium border-border overflow-hidden">
+                      <CardContent className="p-0">
+                        <img 
+                          src={step.image} 
+                          alt={step.title}
+                          className="w-full aspect-square object-cover"
+                        />
                       </CardContent>
                     </Card>
                   </div>
